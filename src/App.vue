@@ -6,6 +6,10 @@
         <v-icon>{{ link.icon }}</v-icon>
         {{ link.text }}
       </v-btn>
+      <v-btn color="primary" @click="showAddProductDialog = true">
+        <v-icon>mdi-plus</v-icon>
+        Add Product
+      </v-btn>
     </v-app-bar>
     <v-main class="bg-blue-lighten-5">
       <router-view v-slot="{ Component }">
@@ -23,6 +27,13 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+
+
+import { useProductStore } from './stores/ProductStore';
+
+const store = useProductStore();
+store.init();
+
 
 const links = ref([
   { text: "Home", to: "/", icon: "mdi-home" },
